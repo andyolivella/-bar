@@ -25,6 +25,7 @@ public class Health : MonoBehaviour
 	public Vector3 respawnPos;
 	
 	private Color originalColor;
+	public int DefaultHealth { get { return defHealth; } }
 	private int defHealth, h, hitForce;
 	private bool hitColor = false;
 	private float nextFlash, stopFlashTime;
