@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.AI;
 //simple "platformer enemy" AI
 [RequireComponent(typeof(CharacterMotor))]
 [RequireComponent(typeof(DealDamage))]
@@ -37,12 +37,17 @@ public class EnemyAI : MonoBehaviour
 	private int shooting_number;
 	private float shootTimeCounter;
 
+	private Transform destination;
+	private NavMeshAgent navigation_agent;
 
 	public bool haveShoot;
 
 	//setup
 	void Awake()
 	{
+		navigation_agent = GetComponent<NavMeshAgent>();
+		destination = GameObject.FindGameObjectWithTag("Player").transform;
+
 		shooting_number = 0;
 		shootTimeCounter = 0;
 		
@@ -84,7 +89,14 @@ public class EnemyAI : MonoBehaviour
 	void Update()
 	{
 		//chase
-		if (sightTrigger && sightTrigger.colliding && chase && sightTrigger.hitObjects != null && sightTrigger.hitObjects.Count > 0 && sightTrigger.hitObjects[0].activeInHierarchy)
+		if (navigation_agent)
+		{ 
+			navigation_agent.destination = destination.position;
+			bool ismoving = navigation_agent.velocity.x > 0 || navigation_agent.velocity.y > 0 || navigation_agent.velocity.z > 0;
+			if (animatorController)
+				animatorController.SetBool("Moving", ismoving);
+		}
+		else if (sightTrigger && sightTrigger.colliding && chase && sightTrigger.hitObjects != null && sightTrigger.hitObjects.Count > 0 && sightTrigger.hitObjects[0].activeInHierarchy)
 		{
 			characterMotor.MoveTo (sightTrigger.hitObjects[0].transform.position, acceleration, chaseStopDistance, ignoreY);
 			//nofity animator controller

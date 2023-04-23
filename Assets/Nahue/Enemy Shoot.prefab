@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 4079952952376330396}
   - component: {fileID: 4079952952371078294}
   - component: {fileID: 4464698173772296702}
+  - component: {fileID: 3510274603393478188}
   m_Layer: 0
   m_Name: Enemy Shoot
   m_TagString: Enemy
@@ -454,6 +455,28 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6485588846423437277, guid: 9a8863e806b72ab49bf587159291ba8e, type: 3}
   bulletOrigin: {fileID: 4464698175339859931}
   bulletForce: 5
+--- !u!195 &3510274603393478188
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4079952952366660982}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &4464698175339859928
 GameObject:
   m_ObjectHideFlags: 0

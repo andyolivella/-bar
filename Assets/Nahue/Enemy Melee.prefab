@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 8263755359191343582}
   - component: {fileID: 8263755359191343580}
   - component: {fileID: 8263755359194467798}
+  - component: {fileID: 5828745083365438628}
   m_Layer: 0
   m_Name: Enemy Melee
   m_TagString: Enemy
@@ -500,6 +501,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!195 &5828745083365438628
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8263755359202104374}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &8873221120688481631
 PrefabInstance:
   m_ObjectHideFlags: 0
