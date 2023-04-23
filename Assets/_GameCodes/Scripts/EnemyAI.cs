@@ -105,7 +105,7 @@ public class EnemyAI : MonoBehaviour
 		}
 		
 		//attack
-		if (attackTrigger && attackTrigger.collided)
+		if (attackTrigger && attackTrigger.collided && attackTrigger.hitObjects.Count > 0)
 		{
 			dealDamage.Attack(attackTrigger.hitObjects[0], attackDmg, pushHeight, pushForce);
 			//notify animator controller

@@ -19,7 +19,7 @@ public class bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(trigger && trigger.collided)
+        if(trigger && trigger.collided && trigger.hitObjects.Count > 0)
         {
             dealDamage.Attack(trigger.hitObjects[0], damage, pushHeight, pushForce);
             Destroy(this.gameObject);
