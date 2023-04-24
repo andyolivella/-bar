@@ -38,18 +38,15 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy() 
     {
         int ranEnemy = Random.Range(0, 2);
+        GameObject enemy = null;
         if (ranEnemy == 0)
         {
             foreach (GameObject meleeEnemy in meleeEnemys)
             {
                 if (!meleeEnemy.activeInHierarchy)
                 {
-                    meleeEnemy.SetActive(true);
-                    int ranSpawnPoint = Random.Range(0, spawnPoints.Length);
-                    meleeEnemy.transform.parent = spawnPoints[ranSpawnPoint];
-                    meleeEnemy.transform.localPosition = Vector3.zero;
-                    currentWaveSpawnedCuantity++;
-                    return;
+                    enemy = meleeEnemy;
+                    break;
                 }
             }
         }
@@ -59,16 +56,21 @@ public class EnemySpawner : MonoBehaviour
             {
                 if (!shootEnemy.activeInHierarchy)
                 {
-                    shootEnemy.SetActive(true);
-                    int ranSpawnPoint = Random.Range(0, spawnPoints.Length);
-                    shootEnemy.transform.parent = spawnPoints[ranSpawnPoint];
-                    shootEnemy.transform.localPosition = Vector3.zero;
-                    currentWaveSpawnedCuantity++;
-                    return;
+                    enemy = shootEnemy;
+                    break;
                 }
             }
         }
-        
+
+        if (enemy != null)
+        { 
+            enemy.SetActive(true);
+            int ranSpawnPoint = Random.Range(0, spawnPoints.Length);
+            enemy.transform.parent = spawnPoints[ranSpawnPoint];
+            enemy.transform.localPosition = Vector3.zero;
+            currentWaveSpawnedCuantity++;
+            return;
+        }
     }
 
     // Update is called once per frame
