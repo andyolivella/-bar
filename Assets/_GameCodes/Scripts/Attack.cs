@@ -25,6 +25,9 @@ public class Attack : MonoBehaviour
     private DealDamage dealDamage;
     private TriggerParent attackTrigger;
 
+    private float attackTimeCounter;
+    [SerializeField] float comboTime = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +45,33 @@ public class Attack : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            animator.SetTrigger("Attack");
+            if (attackCounter == 0)
+            {
+                animator.SetTrigger("Attack");
+                attackCounter = 1;
+                attackTimeCounter = 0;
+            }
+            else if (attackCounter == 1)
+            {
+                animator.SetTrigger("Attack 2");
+                attackCounter = 2;
+                attackTimeCounter = 0;
+            }
+            else if (attackCounter == 2)
+            {
+                animator.SetTrigger("Attack 3");
+                attackCounter = 0;
+                attackTimeCounter = 0;
+            }
+        }
+
+        if (attackCounter > 0)
+            attackTimeCounter += Time.deltaTime;
+
+        if (attackTimeCounter > comboTime)
+        {
+            attackCounter = 0;
+            attackTimeCounter = 0;
         }
 
         if(Isattacking)
