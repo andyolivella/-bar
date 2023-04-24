@@ -14,9 +14,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int[] spawnCuantity;
     private int currentWave;
     private float currentTime;
+    [SerializeField] float lastWaveDuration = 10;
+    private int currentWaveSpawnedCuantity = 0;
     // Start is called before the first frame update
     void Start()
     {
+        currentWaveSpawnedCuantity = 0;
         meleeEnemys = new List<GameObject>();
         shotEnemys = new List<GameObject>();
         currentWave = 0;
@@ -32,43 +35,62 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    void SpawnEnemy() 
+    {
+        int ranEnemy = Random.Range(0, 2);
+        if (ranEnemy == 0)
+        {
+            foreach (GameObject meleeEnemy in meleeEnemys)
+            {
+                if (!meleeEnemy.activeInHierarchy)
+                {
+                    meleeEnemy.SetActive(true);
+                    int ranSpawnPoint = Random.Range(0, spawnPoints.Length);
+                    meleeEnemy.transform.parent = spawnPoints[ranSpawnPoint];
+                    meleeEnemy.transform.localPosition = Vector3.zero;
+                    currentWaveSpawnedCuantity++;
+                    return;
+                }
+            }
+        }
+        else
+        {
+            foreach (GameObject shootEnemy in shotEnemys)
+            {
+                if (!shootEnemy.activeInHierarchy)
+                {
+                    shootEnemy.SetActive(true);
+                    int ranSpawnPoint = Random.Range(0, spawnPoints.Length);
+                    shootEnemy.transform.parent = spawnPoints[ranSpawnPoint];
+                    shootEnemy.transform.localPosition = Vector3.zero;
+                    currentWaveSpawnedCuantity++;
+                    return;
+                }
+            }
+        }
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
         currentTime += Time.deltaTime;
         if (currentWave < timeToSpawn.Length && currentTime > timeToSpawn[currentWave])
         {
-            for (int j = 0; j < spawnCuantity[currentWave]; j++)
-            {
-                int ranEnemy = Random.Range(0, 2);
-                if (ranEnemy == 0)
-                {
-                    foreach (GameObject meleeEnemy in meleeEnemys)
-                    { 
-                        if(!meleeEnemy.activeInHierarchy)
-                        {
-                            meleeEnemy.SetActive(true);
-                            int ranSpawnPoint = Random.Range(0, spawnPoints.Length);
-                            meleeEnemy.transform.parent = spawnPoints[ranSpawnPoint];
-                            meleeEnemy.transform.localPosition = Vector3.zero;
-                        }
-                    }
+            float waveDuration;
+            if (currentWave == timeToSpawn.Length - 1)
+                waveDuration = lastWaveDuration;
+            else
+                waveDuration = (timeToSpawn[currentWave + 1] - timeToSpawn[currentWave]);
+            if (currentTime > (timeToSpawn[currentWave] + waveDuration * Mathf.InverseLerp(0, spawnCuantity[currentWave], currentWaveSpawnedCuantity)))
+                SpawnEnemy();
+
+            if (currentWave < timeToSpawn.Length - 1)
+                if (currentTime > timeToSpawn[currentWave + 1])
+                { 
+                   currentWave++;
+                   currentWaveSpawnedCuantity = 0;
                 }
-                else
-                {
-                    foreach (GameObject shootEnemy in shotEnemys)
-                    {
-                        if (!shootEnemy.activeInHierarchy)
-                        {
-                            shootEnemy.SetActive(true);
-                            int ranSpawnPoint = Random.Range(0, spawnPoints.Length);
-                            shootEnemy.transform.parent = spawnPoints[ranSpawnPoint];
-                            shootEnemy.transform.localPosition = Vector3.zero;
-                        }
-                    }
-                }
-            }
-            currentWave++;
         }
     }
 }
