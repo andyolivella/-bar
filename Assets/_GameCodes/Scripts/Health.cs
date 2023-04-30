@@ -32,7 +32,9 @@ public class Health : MonoBehaviour
 	private Throwing throwing;
 	private Renderer flashRender;
 	private AudioSource aSource;
-	
+
+	public EnemySpawner spawner;
+
 	//setup
 	void Awake()
 	{
@@ -102,17 +104,26 @@ public class Health : MonoBehaviour
 			AudioSource.PlayClipAtPoint(deadSound, transform.position);
 		flashing = false;
 		flashObject.GetComponent<Renderer>().material.color = originalColor;
-		if(respawn)
+		if (respawn)
 		{
 			Rigidbody rigid = GetComponent<Rigidbody>();
-			if(rigid)
+			if (rigid)
 				rigid.velocity *= 0;
 			transform.position = respawnPos;
 			dead = false;
 			currentHealth = defHealth;
 		}
+		else if (spawner)
+		{ 
+			spawner.recycleEnemy(this.gameObject);
+			currentHealth = defHealth;
+			dead = false;
+			Rigidbody rigid = GetComponent<Rigidbody>();
+			if (rigid)
+				rigid.velocity *= 0;
+		}
 		else
-			Destroy (gameObject);
+			Destroy(gameObject);
 		
 		if (spawnOnDeath.Length != 0)
 			foreach(GameObject obj in spawnOnDeath)

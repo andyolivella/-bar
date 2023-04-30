@@ -35,6 +35,26 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public void recycleEnemy(GameObject enemy) 
+    {
+        if(meleeEnemys.Contains(enemy))
+        {
+            for (int i = 0; i < maxCuantityAtSameTime; i++)
+            {
+                if (meleeEnemys[i] == enemy)
+                    meleeEnemys[i].SetActive(false);
+            }
+        }
+        if(shotEnemys.Contains(enemy))
+        {
+            for (int i = 0; i < maxCuantityAtSameTime; i++)
+            {
+                if(shotEnemys[i] == enemy)
+                    shotEnemys[i].SetActive(false);
+            }
+        }
+    }
+
     void SpawnEnemy() 
     {
         int ranEnemy = Random.Range(0, 2);
@@ -68,6 +88,7 @@ public class EnemySpawner : MonoBehaviour
             int ranSpawnPoint = Random.Range(0, spawnPoints.Length);
             enemy.transform.parent = spawnPoints[ranSpawnPoint];
             enemy.transform.localPosition = Vector3.zero;
+            enemy.GetComponent<Health>().spawner = this;
             currentWaveSpawnedCuantity++;
             return;
         }
