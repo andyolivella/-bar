@@ -84,10 +84,10 @@ public class Attack : MonoBehaviour
                     { 
                         dealDamage.Attack(hitGObj, damage, pushHeight, pushForce);
                         special.SpecialBarValue += 0.5f;
-                        Isattacking = false;
                     }
                 }
             }
+            Isattacking = false;
         }
     }
 
