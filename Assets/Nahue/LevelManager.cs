@@ -43,7 +43,7 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (current_state == states.moving)
+        if (current_state == states.moving && currentWave < west_and_east_walls_by_wave.Length-1)
         {
             Vector3 pos = west_and_east_walls_by_wave[currentWave].transform.position;
             pos.z -= Time.deltaTime * move_velocity;
@@ -57,6 +57,7 @@ public class LevelManager : MonoBehaviour
             { 
                 SetFighting();
                 west_and_east_walls_by_wave[currentWave + 1].SetActive(true);
+                currentWave++;
             }
         }
     }
