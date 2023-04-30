@@ -105,7 +105,7 @@ public class EnemySpawner : MonoBehaviour
                 waveDuration = lastWaveDuration;
             else
                 waveDuration = (timeToSpawn[currentWave + 1] - timeToSpawn[currentWave]);
-            if (currentTime > (timeToSpawn[currentWave] + waveDuration * Mathf.InverseLerp(0, spawnCuantity[currentWave], currentWaveSpawnedCuantity)))
+            if (currentWaveSpawnedCuantity < spawnCuantity[currentWave] && currentTime > (timeToSpawn[currentWave] + waveDuration * Mathf.InverseLerp(0, spawnCuantity[currentWave], currentWaveSpawnedCuantity)))
                 SpawnEnemy();
 
             if (currentWave < timeToSpawn.Length - 1)
