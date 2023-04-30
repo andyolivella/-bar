@@ -15,13 +15,13 @@ public class SpecialAttack : MonoBehaviour
     public int damage = 100;
     public float SpecialBarValue { 
         set{
-                bar_value += value;
+                bar_value = value;
                 if(bar_value > 1)
                     bar_value = 1;
                 if(bar_value < 0)
                     bar_value = 0;} 
         get { return bar_value; } }
-    private float bar_value = 0;
+    private float bar_value = 1;
 
     // Start is called before the first frame update
     void Start()
