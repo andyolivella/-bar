@@ -21,8 +21,7 @@ public class Health : MonoBehaviour
 	
 	[HideInInspector]
 	public bool dead, flashing;
-	[HideInInspector]
-	public Vector3 respawnPos;
+
 	
 	private Color originalColor;
 	public int DefaultHealth { get { return defHealth; } }
@@ -35,6 +34,7 @@ public class Health : MonoBehaviour
 
 	public EnemySpawner spawner;
 
+	public Transform respawnpos;
 	//setup
 	void Awake()
 	{
@@ -47,7 +47,6 @@ public class Health : MonoBehaviour
 		flashRender = flashObject.GetComponent<Renderer>();
 		originalColor = flashRender.material.color;
 		defHealth = currentHealth;
-		respawnPos = transform.position;
 	}
 	
 	//detecting damage and dying
@@ -109,7 +108,7 @@ public class Health : MonoBehaviour
 			Rigidbody rigid = GetComponent<Rigidbody>();
 			if (rigid)
 				rigid.velocity *= 0;
-			transform.position = respawnPos;
+			transform.position = respawnpos.position;
 			dead = false;
 			currentHealth = defHealth;
 		}

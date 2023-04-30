@@ -25,6 +25,11 @@ public class UIManager : MonoBehaviour
     
     }
 
+    public void ShowGoText()
+    {
+        GO_gameobj.SetActive(true);
+    }
+
     // Update is called once per frame
     void Update()
     {

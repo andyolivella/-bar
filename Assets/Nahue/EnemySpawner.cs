@@ -16,6 +16,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float waveDuration = 10;
     private int currentWaveSpawnedCuantity = 0;
     private int currentWaveRecycledCuantity = 0;
+    [SerializeField] LevelManager level_manager;
+    private bool canSpawn = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -92,7 +94,7 @@ public class EnemySpawner : MonoBehaviour
         { 
             enemy.SetActive(true);
             int ranSpawnPoint = Random.Range(0, spawnPoints.Length);
-            enemy.transform.parent = spawnPoints[ranSpawnPoint];
+            enemy.transform.parent = spawnPoints[currentWave].GetChild(ranSpawnPoint);
             enemy.transform.localPosition = Vector3.zero;
             enemy.GetComponent<Health>().spawner = this;
             currentWaveSpawnedCuantity++;
@@ -100,9 +102,22 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public void Activate() {
+        canSpawn = true;
+        currentTime = 0;
+
+    }
+
+    public void Deactivate()
+    {
+        canSpawn = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (!canSpawn) return;
+
         currentTime += Time.deltaTime;
         if (currentWave < spawnCuantity.Length)
         {
@@ -111,6 +126,7 @@ public class EnemySpawner : MonoBehaviour
 
             if (currentWaveRecycledCuantity >= spawnCuantity[currentWave])
                 {
+                   level_manager.SetMoving();
                    currentTime = 0;
                    currentWave++;
                    currentWaveSpawnedCuantity = 0;

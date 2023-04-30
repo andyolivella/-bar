@@ -46,7 +46,7 @@ public class Checkpoint : MonoBehaviour
 		if(other.transform.tag == "Player" && health)
 		{
 			//set respawn position in players health script
-			health.respawnPos = transform.position;
+			health.respawnpos = transform;
 			
 			//toggle checkpoints
 			if(render.material.color != activeColor)
