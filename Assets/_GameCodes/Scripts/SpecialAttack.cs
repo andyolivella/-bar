@@ -13,7 +13,15 @@ public class SpecialAttack : MonoBehaviour
     public float pushForce = 27f;
     public float pushHeight = 1.7f;
     public int damage = 100;
-    public float SpecialBarValue = 1;
+    public float SpecialBarValue { 
+        set{
+                bar_value += value;
+                if(bar_value > 1)
+                    bar_value = 1;
+                if(bar_value < 0)
+                    bar_value = 0;} 
+        get { return bar_value; } }
+    private float bar_value = 0;
 
     // Start is called before the first frame update
     void Start()
