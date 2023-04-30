@@ -160,4 +160,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   pushForce: 10
-  pushHeight: 1.2
+  pushHeight: 0

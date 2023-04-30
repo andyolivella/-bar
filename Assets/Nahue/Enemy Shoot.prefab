@@ -286,7 +286,7 @@ MonoBehaviour:
   bounceForce: {x: 0, y: 13.15, z: 0}
   bounceSound: {fileID: 0}
   pushForce: 26.09
-  pushHeight: 1.7
+  pushHeight: 0
   attackDmg: 10
   chase: 1
   ignoreY: 1
