@@ -10,12 +10,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int maxCuantityAtSameTime = 30;
     private List<GameObject> meleeEnemys;
     private List<GameObject> shotEnemys;
-    [SerializeField] int[] timeToSpawn;
     [SerializeField] int[] spawnCuantity;
     private int currentWave;
     private float currentTime;
-    [SerializeField] float lastWaveDuration = 10;
+    [SerializeField] float waveDuration = 10;
     private int currentWaveSpawnedCuantity = 0;
+    private int currentWaveRecycledCuantity = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,15 +42,21 @@ public class EnemySpawner : MonoBehaviour
             for (int i = 0; i < maxCuantityAtSameTime; i++)
             {
                 if (meleeEnemys[i] == enemy)
+                { 
                     meleeEnemys[i].SetActive(false);
+                    currentWaveRecycledCuantity++;
+                }
             }
         }
         if(shotEnemys.Contains(enemy))
         {
             for (int i = 0; i < maxCuantityAtSameTime; i++)
             {
-                if(shotEnemys[i] == enemy)
+                if (shotEnemys[i] == enemy)
+                { 
                     shotEnemys[i].SetActive(false);
+                    currentWaveRecycledCuantity++;
+                }
             }
         }
     }
@@ -98,21 +104,17 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         currentTime += Time.deltaTime;
-        if (currentWave < timeToSpawn.Length && currentTime > timeToSpawn[currentWave])
+        if (currentWave < spawnCuantity.Length)
         {
-            float waveDuration;
-            if (currentWave == timeToSpawn.Length - 1)
-                waveDuration = lastWaveDuration;
-            else
-                waveDuration = (timeToSpawn[currentWave + 1] - timeToSpawn[currentWave]);
-            if (currentWaveSpawnedCuantity < spawnCuantity[currentWave] && currentTime > (timeToSpawn[currentWave] + waveDuration * Mathf.InverseLerp(0, spawnCuantity[currentWave], currentWaveSpawnedCuantity)))
+            if (currentWaveSpawnedCuantity < spawnCuantity[currentWave] && currentTime > (waveDuration * Mathf.InverseLerp(0, spawnCuantity[currentWave], currentWaveSpawnedCuantity)))
                 SpawnEnemy();
 
-            if (currentWave < timeToSpawn.Length - 1)
-                if (currentTime > timeToSpawn[currentWave + 1])
-                { 
+            if (currentWaveRecycledCuantity >= spawnCuantity[currentWave])
+                {
+                   currentTime = 0;
                    currentWave++;
                    currentWaveSpawnedCuantity = 0;
+                   currentWaveRecycledCuantity = 0;
                 }
         }
     }
