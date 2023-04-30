@@ -80,9 +80,12 @@ public class Attack : MonoBehaviour
             { 
                 foreach(GameObject hitGObj in attackTrigger.hitObjects)
                 {
-                    if(hitGObj && hitGObj.GetComponent<Health>())
-                    dealDamage.Attack(hitGObj, damage, pushHeight, pushForce);
-                    special.SpecialBarValue += 0.5f;
+                    if (hitGObj && hitGObj.GetComponent<Health>())
+                    { 
+                        dealDamage.Attack(hitGObj, damage, pushHeight, pushForce);
+                        special.SpecialBarValue += 0.5f;
+                        Isattacking = false;
+                    }
                 }
             }
         }
