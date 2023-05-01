@@ -93,7 +93,7 @@ public class EnemySpawner : MonoBehaviour
         if (enemy != null)
         { 
             enemy.SetActive(true);
-            int ranSpawnPoint = Random.Range(0, spawnPoints.Length);
+            int ranSpawnPoint = Random.Range(0, spawnPoints[currentWave].childCount);
             enemy.transform.parent = spawnPoints[currentWave].GetChild(ranSpawnPoint);
             enemy.transform.localPosition = Vector3.zero;
             enemy.GetComponent<Health>().spawner = this;
