@@ -56,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
             if (currentWaveSpawnedCuantity < spawnCuantity[currentWave] && currentTime > (waveDuration * Mathf.InverseLerp(0, spawnCuantity[currentWave], currentWaveSpawnedCuantity)))
                 SpawnEnemy();
 
-            if (currentWaveRecycledCuantity >= spawnCuantity[currentWave])
+            if (currentWaveRecycledCuantity >= spawnCuantity[currentWave] && currentTime > waveDuration)
                 {
                    level_manager.SetMoving();
                    currentWave++;
