@@ -87,7 +87,6 @@ public class Attack : MonoBehaviour
                     }
                 }
             }
-            Isattacking = false;
         }
     }
 
