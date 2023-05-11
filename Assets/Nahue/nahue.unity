@@ -3736,8 +3736,8 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 108059117}
   - {fileID: 353518003}
-  spawnCuantity: 050000000a000000
-  waveDuration: 10
+  spawnCuantity: 040000000a000000
+  waveDuration: 15
   level_manager: {fileID: 347943756}
   enemysPools:
   - {fileID: 1151111070}
