@@ -9,6 +9,7 @@ public class bullet : MonoBehaviour
     public int damage = 5;
     public float pushForce = 10f;
     public float pushHeight = 1.2f;
+    public ObjectPool objectPool;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class bullet : MonoBehaviour
         if(trigger && trigger.collided && trigger.hitObjects.Count > 0)
         {
             dealDamage.Attack(trigger.hitObjects[0], damage, pushHeight, pushForce);
-            Destroy(this.gameObject);
+            objectPool.Release(this.gameObject);
         }
     }
 }

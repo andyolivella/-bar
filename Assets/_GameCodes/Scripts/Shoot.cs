@@ -11,6 +11,7 @@ public class Shoot : MonoBehaviour
     public void ShootTo( GameObject objetive)
     {
         GameObject gobj = bulletsPool.Get();
+        gobj.GetComponent<bullet>().objectPool = bulletsPool;
         gobj.transform.position = bulletOrigin.position;
         Rigidbody rb = gobj.GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
