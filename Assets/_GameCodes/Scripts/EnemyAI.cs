@@ -127,7 +127,7 @@ public class EnemyAI : MonoBehaviour
 		else if(animatorController)
 			animatorController.SetBool("Attacking", false);
 
-		if(haveShoot && shootTrigger.colliding )
+		if(haveShoot && shootTrigger.colliding && shootTrigger.hitObjects.Count > 0 )
         {
 			shootTimeCounter -= Time.deltaTime;
 			if (shootTimeCounter < 0)
