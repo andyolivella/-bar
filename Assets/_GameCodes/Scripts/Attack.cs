@@ -7,7 +7,7 @@ public class Attack : MonoBehaviour
 
 
 
-    public bool Isattacking;
+    [HideInInspector]public bool Isattacking;
     public GameObject hitbox;
     public Animator animator;
     public AudioClip attacksound;
@@ -26,9 +26,11 @@ public class Attack : MonoBehaviour
     private TriggerParent attackTrigger;
 
     private float attackTimeCounter;
-    [SerializeField] float minComboTime = 0.5f;
-    [SerializeField] float maxComboTime = 1;
-
+    [SerializeField] float minComboAnimationPercent = 0.7f;
+    [SerializeField] string idleAnimation = "SLOW PILL";
+    [SerializeField] string melee1Animation = "melee";
+    [SerializeField] string melee2Animation = "melee 2";
+    [SerializeField] string melee3Animation = "melee 3";
     // Start is called before the first frame update
     void Start()
     {
@@ -46,19 +48,19 @@ public class Attack : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            if (attackCounter == 0 || attackTimeCounter < minComboTime)
+            if (attackCounter == 0)
             {
                 animator.SetTrigger("Attack");
                 attackCounter = 1;
                 attackTimeCounter = 0;
             }
-            else if (attackCounter == 1 && attackTimeCounter > minComboTime)
+            else if (attackCounter == 1 && animator.GetCurrentAnimatorStateInfo(2).IsName(melee1Animation)  && attackTimeCounter > animator.GetCurrentAnimatorClipInfo(2)[0].clip.length*minComboAnimationPercent)
             {
                 animator.SetTrigger("Attack 2");
                 attackCounter = 2;
                 attackTimeCounter = 0;
             }
-            else if (attackCounter == 2 && attackTimeCounter > minComboTime)
+            else if (attackCounter == 2 && animator.GetCurrentAnimatorStateInfo(2).IsName(melee2Animation) && attackTimeCounter > animator.GetCurrentAnimatorClipInfo(2)[0].clip.length * minComboAnimationPercent)
             {
                 animator.SetTrigger("Attack 3");
                 attackCounter = 0;
@@ -66,10 +68,9 @@ public class Attack : MonoBehaviour
             }
         }
 
-        if (attackCounter > 0)
-            attackTimeCounter += Time.deltaTime;
+        attackTimeCounter += Time.deltaTime;
 
-        if (attackTimeCounter > maxComboTime)
+        if (animator.GetCurrentAnimatorStateInfo(2).IsName(idleAnimation))
         {
             attackCounter = 0;
             attackTimeCounter = 0;

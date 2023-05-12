@@ -4600,5 +4600,13 @@ PrefabInstance:
       propertyPath: comboTime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: maxComboTime
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: minComboTime
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
