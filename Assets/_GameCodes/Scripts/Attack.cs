@@ -26,7 +26,8 @@ public class Attack : MonoBehaviour
     private TriggerParent attackTrigger;
 
     private float attackTimeCounter;
-    [SerializeField] float comboTime = 3;
+    [SerializeField] float minComboTime = 0.5f;
+    [SerializeField] float maxComboTime = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -45,19 +46,19 @@ public class Attack : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            if (attackCounter == 0)
+            if (attackCounter == 0 || attackTimeCounter < minComboTime)
             {
                 animator.SetTrigger("Attack");
                 attackCounter = 1;
                 attackTimeCounter = 0;
             }
-            else if (attackCounter == 1)
+            else if (attackCounter == 1 && attackTimeCounter > minComboTime)
             {
                 animator.SetTrigger("Attack 2");
                 attackCounter = 2;
                 attackTimeCounter = 0;
             }
-            else if (attackCounter == 2)
+            else if (attackCounter == 2 && attackTimeCounter > minComboTime)
             {
                 animator.SetTrigger("Attack 3");
                 attackCounter = 0;
@@ -68,7 +69,7 @@ public class Attack : MonoBehaviour
         if (attackCounter > 0)
             attackTimeCounter += Time.deltaTime;
 
-        if (attackTimeCounter > comboTime)
+        if (attackTimeCounter > maxComboTime)
         {
             attackCounter = 0;
             attackTimeCounter = 0;
