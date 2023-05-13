@@ -107,7 +107,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.01, y: 2.27, z: 1}
+  m_Size: {x: 1.31, y: 2.27, z: 1.63}
   m_Center: {x: 0, y: 0, z: 0.69}
 --- !u!114 &8263755359191343568
 MonoBehaviour:
@@ -199,7 +199,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8263755359202527254}
   - component: {fileID: 8263755359199103030}
-  - component: {fileID: 8263755359195921462}
   - component: {fileID: 8263755359200103158}
   - component: {fileID: 8263755359197017942}
   - component: {fileID: 8263755359191343574}
@@ -208,6 +207,7 @@ GameObject:
   - component: {fileID: 8263755359191343580}
   - component: {fileID: 8263755359194467798}
   - component: {fileID: 5828745083365438628}
+  - component: {fileID: 203074592725736888}
   m_Layer: 8
   m_Name: Enemy Melee
   m_TagString: Enemy
@@ -242,19 +242,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8263755359202104374}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &8263755359195921462
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8263755359202104374}
-  m_Material: {fileID: 13400000, guid: 19ee067f246d16342b3b35eea6a3109a, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &8263755359200103158
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -346,7 +333,7 @@ MonoBehaviour:
   speedLimit: 10
   bounceForce: {x: 0, y: 13.15, z: 0}
   bounceSound: {fileID: 0}
-  pushForce: 26.09
+  pushForce: 5
   pushHeight: 0
   attackDmg: 10
   chase: 1
@@ -360,6 +347,7 @@ MonoBehaviour:
   shootTime: 0.5
   howManyShoots: 3
   timeAfterAllShoots: 5
+  dealingDamage: 0
   haveShoot: 0
 --- !u!114 &8263755359191343582
 MonoBehaviour:
@@ -392,8 +380,8 @@ MonoBehaviour:
   - {fileID: 100000, guid: de22137421d24f049b9b87e224ae7a0b, type: 3}
   dead: 0
   flashing: 0
-  respawnPos: {x: 0, y: 0, z: 0}
   spawner: {fileID: 0}
+  respawnpos: {fileID: 0}
 --- !u!114 &8263755359191343580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,6 +512,19 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &203074592725736888
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8263755359202104374}
+  m_Material: {fileID: 13400000, guid: 19ee067f246d16342b3b35eea6a3109a, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &8873221120688481631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -814,6 +815,24 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 4660609673511541257, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}
   m_PrefabInstance: {fileID: 8873221120688481631}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7359497718786129814 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2091415933832272585, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}
+  m_PrefabInstance: {fileID: 8873221120688481631}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4985258073393749168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7359497718786129814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e3c0061b668fb4a95e8f2b749b7753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyAI: {fileID: 8263755359191343572}
 --- !u!4 &7884079472968410412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1607190345519087731, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}

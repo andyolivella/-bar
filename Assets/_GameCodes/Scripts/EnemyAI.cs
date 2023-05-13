@@ -40,11 +40,16 @@ public class EnemyAI : MonoBehaviour
 	private Transform destination;
 	private NavMeshAgent navigation_agent;
 
+	public bool dealingDamage = false;
+	[SerializeField] string attackAnimation = "Attack";
+
 	public bool haveShoot;
 
 	//setup
 	void Awake()
 	{
+		dealingDamage = false;
+
 		navigation_agent = GetComponent<NavMeshAgent>();
 		destination = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -89,14 +94,14 @@ public class EnemyAI : MonoBehaviour
 	void Update()
 	{
 		//chase
-		if (navigation_agent)
+		if (!animatorController.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) && navigation_agent)
 		{ 
 			navigation_agent.destination = destination.position;
 			bool ismoving = navigation_agent.velocity.x > 0 || navigation_agent.velocity.y > 0 || navigation_agent.velocity.z > 0;
 			if (animatorController)
 				animatorController.SetBool("Moving", ismoving);
 		}
-		else if (sightTrigger && sightTrigger.colliding && chase && sightTrigger.hitObjects != null && sightTrigger.hitObjects.Count > 0 && sightTrigger.hitObjects[0].activeInHierarchy)
+		else if (!animatorController.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) && sightTrigger && sightTrigger.colliding && chase && sightTrigger.hitObjects != null && sightTrigger.hitObjects.Count > 0 && sightTrigger.hitObjects[0].activeInHierarchy)
 		{
 			characterMotor.MoveTo (sightTrigger.hitObjects[0].transform.position, acceleration, chaseStopDistance, ignoreY);
 			//nofity animator controller
@@ -112,22 +117,29 @@ public class EnemyAI : MonoBehaviour
 			if(animatorController)
 				animatorController.SetBool("Moving", false);
 			//enable patrol behaviour
-			if(moveToPointsScript)
-				moveToPointsScript.enabled = true;
+			//if(moveToPointsScript)
+			//	moveToPointsScript.enabled = true;
+
+			navigation_agent.destination = transform.position;
 		}
 		
 		//attack
 		if (attackTrigger && attackTrigger.collided && attackTrigger.hitObjects.Count > 0)
 		{
-			dealDamage.Attack(attackTrigger.hitObjects[0], attackDmg, pushHeight, pushForce);
 			//notify animator controller
 			if(animatorController)
-				animatorController.SetBool("Attacking", true);	
+				animatorController.SetTrigger("Attacking");
 		}
-		else if(animatorController)
-			animatorController.SetBool("Attacking", false);
+		
+		if (dealingDamage)
+		{
+			if(attackTrigger.hitObjects.Count > 0)
+				dealDamage.Attack(attackTrigger.hitObjects[0], attackDmg, pushHeight, pushForce);
+			dealingDamage = false;
+		}
 
-		if(haveShoot && shootTrigger.colliding && shootTrigger.hitObjects.Count > 0 )
+
+		if (haveShoot && shootTrigger.colliding && shootTrigger.hitObjects.Count > 0 )
         {
 			shootTimeCounter -= Time.deltaTime;
 			if (shootTimeCounter < 0)

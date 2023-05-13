@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationAttack : MonoBehaviour
+public class PlayerAnimationAttack : MonoBehaviour
 {
     public Attack melee_attack;
     public SpecialAttack special_attack;

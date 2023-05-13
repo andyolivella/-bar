@@ -346,6 +346,7 @@ MonoBehaviour:
   shootTime: 0.5
   howManyShoots: 3
   timeAfterAllShoots: 5
+  dealingDamage: 0
   haveShoot: 1
 --- !u!114 &4079952952376330398
 MonoBehaviour:
@@ -909,6 +910,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1607190345519087731, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}
   m_PrefabInstance: {fileID: 3536493081438669855}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3175624938386970326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2091415933832272585, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}
+  m_PrefabInstance: {fileID: 3536493081438669855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1866667124505410169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3175624938386970326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e3c0061b668fb4a95e8f2b749b7753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyAI: {fileID: 4079952952376330388}
 --- !u!95 &8194838791511397910 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4660609673511541257, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}

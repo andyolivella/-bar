@@ -4584,6 +4584,10 @@ PrefabInstance:
       propertyPath: respawnpos
       value: 
       objectReference: {fileID: 1600041916}
+    - target: {fileID: 5018654094815854099, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 5728612915480558943, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
       propertyPath: m_IsActive
       value: 0
