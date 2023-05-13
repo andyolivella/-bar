@@ -33,6 +33,7 @@ public class Health : MonoBehaviour
 	private AudioSource aSource;
 
 	public EnemySpawner spawner;
+	public EnemyManager enemy_manager;
 
 	public Transform respawnpos;
 	//setup
@@ -120,6 +121,8 @@ public class Health : MonoBehaviour
 			Rigidbody rigid = GetComponent<Rigidbody>();
 			if (rigid)
 				rigid.velocity *= 0;
+
+			enemy_manager.RemoveEnemy(this.gameObject.GetComponent<EnemyAI>());
 		}
 		else
 			Destroy(gameObject);

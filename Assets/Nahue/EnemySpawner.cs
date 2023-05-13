@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] EnemyManager enemyManager;
     [SerializeField] Transform[] spawnPoints;
     [SerializeField] int[] spawnCuantity;
     private int currentWave = 0;
@@ -30,6 +31,8 @@ public class EnemySpawner : MonoBehaviour
         enemy.transform.parent = spawnPoints[currentWave].GetChild(ranSpawnPoint);
         enemy.transform.localPosition = Vector3.zero;
         enemy.GetComponent<Health>().spawner = this;
+        enemy.GetComponent<Health>().enemy_manager = enemyManager;
+        enemy.GetComponent<EnemyAI>().manager = enemyManager;
         currentWaveSpawnedCuantity++;
     }
 

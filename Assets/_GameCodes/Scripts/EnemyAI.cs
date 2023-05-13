@@ -42,16 +42,14 @@ public class EnemyAI : MonoBehaviour
 
 	public bool dealingDamage = false;
 	[SerializeField] string attackAnimation = "Attack";
-	public bool canAttack;
 
 	public bool haveShoot;
-
+	public EnemyManager manager;
+	
 	//setup
 	void Awake()
 	{
 		dealingDamage = false;
-		canAttack = true;
-
 
 		navigation_agent = GetComponent<NavMeshAgent>();
 		destination = GameObject.FindGameObjectWithTag("Player").transform;
@@ -98,7 +96,8 @@ public class EnemyAI : MonoBehaviour
 	{
 		//chase
 		if (attackTrigger.hitObjects.Count == 0 && !animatorController.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) && navigation_agent)
-		{ 
+		{
+			manager.RemoveEnemy(this);
 			navigation_agent.destination = destination.position;
 			bool ismoving = navigation_agent.velocity.x > 0 || navigation_agent.velocity.y > 0 || navigation_agent.velocity.z > 0;
 			if (animatorController)
@@ -127,7 +126,7 @@ public class EnemyAI : MonoBehaviour
 		}
 		
 		//attack
-		if (canAttack && !haveShoot && attackTrigger && attackTrigger.hitObjects.Count > 0)
+		if (!haveShoot && attackTrigger && attackTrigger.hitObjects.Count > 0 && manager.CanAttack(this))
 		{
 			//notify animator controller
 			if(animatorController)
