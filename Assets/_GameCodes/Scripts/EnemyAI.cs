@@ -42,6 +42,7 @@ public class EnemyAI : MonoBehaviour
 
 	public bool dealingDamage = false;
 	[SerializeField] string attackAnimation = "Attack";
+	public bool canAttack;
 
 	public bool haveShoot;
 
@@ -49,6 +50,8 @@ public class EnemyAI : MonoBehaviour
 	void Awake()
 	{
 		dealingDamage = false;
+		canAttack = true;
+
 
 		navigation_agent = GetComponent<NavMeshAgent>();
 		destination = GameObject.FindGameObjectWithTag("Player").transform;
@@ -124,7 +127,7 @@ public class EnemyAI : MonoBehaviour
 		}
 		
 		//attack
-		if (attackTrigger && attackTrigger.hitObjects.Count > 0)
+		if (canAttack && !haveShoot && attackTrigger && attackTrigger.hitObjects.Count > 0)
 		{
 			//notify animator controller
 			if(animatorController)
