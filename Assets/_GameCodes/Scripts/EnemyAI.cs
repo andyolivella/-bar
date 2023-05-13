@@ -94,14 +94,14 @@ public class EnemyAI : MonoBehaviour
 	void Update()
 	{
 		//chase
-		if (!animatorController.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) && navigation_agent)
+		if (attackTrigger.hitObjects.Count == 0 && !animatorController.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) && navigation_agent)
 		{ 
 			navigation_agent.destination = destination.position;
 			bool ismoving = navigation_agent.velocity.x > 0 || navigation_agent.velocity.y > 0 || navigation_agent.velocity.z > 0;
 			if (animatorController)
 				animatorController.SetBool("Moving", ismoving);
 		}
-		else if (!animatorController.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) && sightTrigger && sightTrigger.colliding && chase && sightTrigger.hitObjects != null && sightTrigger.hitObjects.Count > 0 && sightTrigger.hitObjects[0].activeInHierarchy)
+		else if (attackTrigger.hitObjects.Count == 0 && !animatorController.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) && sightTrigger && sightTrigger.colliding && chase && sightTrigger.hitObjects != null && sightTrigger.hitObjects.Count > 0 && sightTrigger.hitObjects[0].activeInHierarchy)
 		{
 			characterMotor.MoveTo (sightTrigger.hitObjects[0].transform.position, acceleration, chaseStopDistance, ignoreY);
 			//nofity animator controller
@@ -124,7 +124,7 @@ public class EnemyAI : MonoBehaviour
 		}
 		
 		//attack
-		if (attackTrigger && attackTrigger.collided && attackTrigger.hitObjects.Count > 0)
+		if (attackTrigger && attackTrigger.hitObjects.Count > 0)
 		{
 			//notify animator controller
 			if(animatorController)
