@@ -122,7 +122,7 @@ public class Health : MonoBehaviour
 			if (rigid)
 				rigid.velocity *= 0;
 
-			enemy_manager.RemoveEnemy(this.gameObject.GetComponent<EnemyAI>());
+			enemy_manager.RemoveEnemy(this.gameObject);
 		}
 		else
 			Destroy(gameObject);

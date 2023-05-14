@@ -97,7 +97,7 @@ public class EnemyAI : MonoBehaviour
 		//chase
 		if (attackTrigger.hitObjects.Count == 0 && !animatorController.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) && navigation_agent)
 		{
-			manager.RemoveEnemy(this);
+			manager.RemoveEnemy(this.gameObject);
 			navigation_agent.destination = destination.position;
 			bool ismoving = navigation_agent.velocity.x > 0 || navigation_agent.velocity.y > 0 || navigation_agent.velocity.z > 0;
 			if (animatorController)
@@ -126,7 +126,7 @@ public class EnemyAI : MonoBehaviour
 		}
 		
 		//attack
-		if (!haveShoot && attackTrigger && attackTrigger.hitObjects.Count > 0 && manager.CanAttack(this))
+		if (!haveShoot && attackTrigger && attackTrigger.hitObjects.Count > 0 && manager.CanAttack(this.gameObject))
 		{
 			//notify animator controller
 			if(animatorController)

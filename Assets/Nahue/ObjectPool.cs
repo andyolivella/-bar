@@ -17,6 +17,7 @@ public class ObjectPool : MonoBehaviour
         }
         for (int i = 0; i < pool.Count; i++)
         {
+            pool[i].name += " " + i.ToString();
             pool[i].SetActive(false);
         }
     }
