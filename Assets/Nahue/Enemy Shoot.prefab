@@ -348,6 +348,7 @@ MonoBehaviour:
   timeAfterAllShoots: 5
   dealingDamage: 0
   attackAnimation: Attack
+  shootAnimation: Shoot
   haveShoot: 1
   isVisibleOnCamera: {fileID: 3276400144915348916}
   manager: {fileID: 0}
@@ -505,6 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 287993b6e51c4434dafb8d88292b5517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 8194838791511397910}
   bulletOrigin: {fileID: 4464698175339859931}
   bulletForce: 5
   bulletsPool: {fileID: 2534480423308807433}
@@ -940,6 +942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAI: {fileID: 4079952952376330388}
+  enemyShoot: {fileID: 4464698173772296702}
 --- !u!1 &4532196358969568203 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1148907372361836500, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}

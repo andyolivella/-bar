@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
+    public Animator animator;
     public Transform bulletOrigin;
     public float bulletForce = 5;
     public ObjectPool bulletsPool;
+    private GameObject objetive;
     // Start is called before the first frame update
-    public void ShootTo( GameObject objetive)
+    public void StartShootAnimation(GameObject objetiveParam)
+    {
+        objetive = objetiveParam;
+        animator.SetTrigger("shoot");
+    }
+
+    public void shoot()
     {
         GameObject gobj = bulletsPool.Get();
         gobj.GetComponent<bullet>().objectPool = bulletsPool;

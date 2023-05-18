@@ -43,6 +43,7 @@ public class EnemyAI : MonoBehaviour
 
 	public bool dealingDamage = false;
 	[SerializeField] string attackAnimation = "Attack";
+	[SerializeField] string shootAnimation = "Shoot";
 
 	public bool haveShoot;
 	public IsVisibleOnCamera isVisibleOnCamera;
@@ -99,15 +100,26 @@ public class EnemyAI : MonoBehaviour
 	void Update()
 	{
 		//chase
-		if (attackTrigger.hitObjects.Count == 0 && !animatorController.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) && navigation_agent)
+		if (attackTrigger.hitObjects.Count == 0 && 
+			!animatorController.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) &&
+			!animatorController.GetCurrentAnimatorStateInfo(0).IsName(shootAnimation) &&
+			navigation_agent)
 		{
 			manager.RemoveEnemy(this.gameObject);
 			navigation_agent.destination = destination.position;
-			bool ismoving = navigation_agent.velocity.x > 0 || navigation_agent.velocity.y > 0 || navigation_agent.velocity.z > 0;
+			bool ismoving = Mathf.Abs(navigation_agent.velocity.x) > 0 || Mathf.Abs(navigation_agent.velocity.y) > 0 || Mathf.Abs(navigation_agent.velocity.z) > 0;
 			if (animatorController)
 				animatorController.SetBool("Moving", ismoving);
 		}
-		else if (attackTrigger.hitObjects.Count == 0 && !animatorController.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) && sightTrigger && sightTrigger.colliding && chase && sightTrigger.hitObjects != null && sightTrigger.hitObjects.Count > 0 && sightTrigger.hitObjects[0].activeInHierarchy)
+		else if (attackTrigger.hitObjects.Count == 0 && 
+			!animatorController.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) &&
+			!animatorController.GetCurrentAnimatorStateInfo(0).IsName(shootAnimation) &&
+			sightTrigger && 
+			sightTrigger.colliding && 
+			chase && 
+			sightTrigger.hitObjects != null && 
+			sightTrigger.hitObjects.Count > 0 && 
+			sightTrigger.hitObjects[0].activeInHierarchy)
 		{
 			characterMotor.MoveTo (sightTrigger.hitObjects[0].transform.position, acceleration, chaseStopDistance, ignoreY);
 			//nofity animator controller
@@ -150,7 +162,7 @@ public class EnemyAI : MonoBehaviour
 			shootTimeCounter -= Time.deltaTime;
 			if (shootTimeCounter < 0)
 			{
-				shooter.ShootTo(shootTrigger.hitObjects[0]);
+				shooter.StartShootAnimation(shootTrigger.hitObjects[0]);
 				shootTimeCounter = shootTime;
 				shooting_number++;
 

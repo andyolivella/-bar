@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyAnimationAttack : MonoBehaviour
 {
     [SerializeField] EnemyAI enemyAI;
+    [SerializeField] Shoot enemyShoot;
 
     public void StartAttack()
     {
@@ -14,6 +15,11 @@ public class EnemyAnimationAttack : MonoBehaviour
     public void EndAttack()
     {
         enemyAI.dealingDamage = false;
+    }
+
+    public void StartShoot() 
+    {
+        enemyShoot.shoot();
     }
 
 }

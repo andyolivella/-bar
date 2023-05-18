@@ -349,6 +349,7 @@ MonoBehaviour:
   timeAfterAllShoots: 5
   dealingDamage: 0
   attackAnimation: Attack
+  shootAnimation: Shoot
   haveShoot: 0
   isVisibleOnCamera: {fileID: 4486535379222611134}
   manager: {fileID: 0}
@@ -837,6 +838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAI: {fileID: 8263755359191343572}
+  enemyShoot: {fileID: 0}
 --- !u!4 &7884079472968410412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1607190345519087731, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}
