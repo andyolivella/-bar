@@ -349,6 +349,8 @@ MonoBehaviour:
   dealingDamage: 0
   attackAnimation: Attack
   haveShoot: 1
+  isVisibleOnCamera: {fileID: 3276400144915348916}
+  manager: {fileID: 0}
 --- !u!114 &4079952952376330398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,6 +383,7 @@ MonoBehaviour:
   dead: 0
   flashing: 0
   spawner: {fileID: 0}
+  enemy_manager: {fileID: 0}
   respawnpos: {fileID: 0}
 --- !u!114 &4079952952376330396
 MonoBehaviour:
@@ -602,7 +605,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7833687501453034115
 MonoBehaviour:
@@ -684,6 +687,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1148907372361836500, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1300982874479001355, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -751,6 +758,10 @@ PrefabInstance:
     - target: {fileID: 2091415933832272585, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091415933832272585, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2446888966871784756, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}
       propertyPath: m_Layer
@@ -929,6 +940,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAI: {fileID: 4079952952376330388}
+--- !u!1 &4532196358969568203 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1148907372361836500, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}
+  m_PrefabInstance: {fileID: 3536493081438669855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3276400144915348916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4532196358969568203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044fdbe28767b1e45aa009f6b0088510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visible: 0
 --- !u!95 &8194838791511397910 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4660609673511541257, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}

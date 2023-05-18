@@ -350,6 +350,8 @@ MonoBehaviour:
   dealingDamage: 0
   attackAnimation: Attack
   haveShoot: 0
+  isVisibleOnCamera: {fileID: 4486535379222611134}
+  manager: {fileID: 0}
 --- !u!114 &8263755359191343582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +384,7 @@ MonoBehaviour:
   dead: 0
   flashing: 0
   spawner: {fileID: 0}
+  enemy_manager: {fileID: 0}
   respawnpos: {fileID: 0}
 --- !u!114 &8263755359191343580
 MonoBehaviour:
@@ -839,3 +842,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1607190345519087731, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}
   m_PrefabInstance: {fileID: 8873221120688481631}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8418844757959443083 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1148907372361836500, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}
+  m_PrefabInstance: {fileID: 8873221120688481631}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4486535379222611134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8418844757959443083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044fdbe28767b1e45aa009f6b0088510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visible: 0

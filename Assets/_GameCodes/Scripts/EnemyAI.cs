@@ -37,6 +37,7 @@ public class EnemyAI : MonoBehaviour
 	private int shooting_number;
 	private float shootTimeCounter;
 
+
 	private Transform destination;
 	private NavMeshAgent navigation_agent;
 
@@ -44,10 +45,13 @@ public class EnemyAI : MonoBehaviour
 	[SerializeField] string attackAnimation = "Attack";
 
 	public bool haveShoot;
+	public IsVisibleOnCamera isVisibleOnCamera;
 	public EnemyManager manager;
-	
-	//setup
-	void Awake()
+
+
+
+    //setup
+    void Awake()
 	{
 		dealingDamage = false;
 
@@ -141,7 +145,7 @@ public class EnemyAI : MonoBehaviour
 		}
 
 
-		if (haveShoot && shootTrigger.colliding && shootTrigger.hitObjects.Count > 0 )
+		if (haveShoot && isVisibleOnCamera.visible && shootTrigger.colliding && shootTrigger.hitObjects.Count > 0)
         {
 			shootTimeCounter -= Time.deltaTime;
 			if (shootTimeCounter < 0)
