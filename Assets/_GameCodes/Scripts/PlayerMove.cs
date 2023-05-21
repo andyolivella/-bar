@@ -36,7 +36,7 @@ public class PlayerMove : MonoBehaviour
 	public int onEnemyBounce;					
 	
 	private int onJump;
-	private bool grounded;
+	public bool grounded;
 	private Transform[] floorCheckers;
 	private Quaternion screenMovementSpace;
 	private float airPressTime, groundedCount, curAccel, curDecel, curRotateSpeed, slope;
@@ -169,14 +169,14 @@ public class PlayerMove : MonoBehaviour
 						rigid.AddForce (slide, ForceMode.Force);
 					}
 					//enemy bouncing
-					if (hit.transform.tag == "Enemy" && rigid.velocity.y < 0)
+					/*if (hit.transform.tag == "Enemy" && rigid.velocity.y < 0)
 					{
 						enemyAI = hit.transform.GetComponent<EnemyAI>();
 						enemyAI.BouncedOn();
 						onEnemyBounce ++;
 						dealDamage.Attack(hit.transform.gameObject, 1, 0f, 0f);
 					}
-					else
+					else*/
 						onEnemyBounce = 0;
 					//moving platforms
 					if (hit.transform.tag == "MovingPlatform" || hit.transform.tag == "Pushable")
