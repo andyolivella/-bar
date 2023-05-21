@@ -36,7 +36,7 @@ public class PlayerMove : MonoBehaviour
 	public int onEnemyBounce;					
 	
 	private int onJump;
-	public bool grounded;
+	private bool grounded;
 	private Transform[] floorCheckers;
 	private Quaternion screenMovementSpace;
 	private float airPressTime, groundedCount, curAccel, curDecel, curRotateSpeed, slope;
@@ -148,7 +148,7 @@ public class PlayerMove : MonoBehaviour
 	
 	//returns whether we are on the ground or not
 	//also: bouncing on enemies, keeping player on moving platforms and slope checking
-	private bool IsGrounded() 
+	public bool IsGrounded() 
 	{
 		//get distance to ground, from centre of collider (where floorcheckers should be)
 		float dist = GetComponent<Collider>().bounds.extents.y;

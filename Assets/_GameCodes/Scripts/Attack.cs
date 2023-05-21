@@ -31,6 +31,7 @@ public class Attack : MonoBehaviour
     [SerializeField] string melee1Animation = "melee";
     [SerializeField] string melee2Animation = "melee 2";
     [SerializeField] string melee3Animation = "melee 3";
+    [SerializeField] PlayerMove playerMove;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +42,7 @@ public class Attack : MonoBehaviour
         dealDamage = GetComponent<DealDamage>();
         attackTrigger = hitbox.GetComponent<TriggerParent>();
         special = GetComponent<SpecialAttack>();
+        playerMove = GetComponent<PlayerMove>();
     }
 
     // Update is called once per frame
@@ -48,24 +50,33 @@ public class Attack : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            if (attackCounter == 0)
-            {
-                animator.SetTrigger("Attack");
-                attackCounter = 1;
-                attackTimeCounter = 0;
-            }
-            else if (attackCounter == 1 && animator.GetCurrentAnimatorStateInfo(2).IsName(melee1Animation)  && attackTimeCounter > animator.GetCurrentAnimatorClipInfo(2)[0].clip.length*minComboAnimationPercent)
-            {
-                animator.SetTrigger("Attack 2");
-                attackCounter = 2;
-                attackTimeCounter = 0;
-            }
-            else if (attackCounter == 2 && animator.GetCurrentAnimatorStateInfo(2).IsName(melee2Animation) && attackTimeCounter > animator.GetCurrentAnimatorClipInfo(2)[0].clip.length * minComboAnimationPercent)
+            if (!playerMove.IsGrounded())
             {
                 animator.SetTrigger("Attack 3");
                 attackCounter = 0;
                 attackTimeCounter = 0;
             }
+            else {
+                if (attackCounter == 0)
+                {
+                    animator.SetTrigger("Attack");
+                    attackCounter = 1;
+                    attackTimeCounter = 0;
+                }
+                else if (attackCounter == 1 && animator.GetCurrentAnimatorStateInfo(2).IsName(melee1Animation) && attackTimeCounter > animator.GetCurrentAnimatorClipInfo(2)[0].clip.length * minComboAnimationPercent)
+                {
+                    animator.SetTrigger("Attack 2");
+                    attackCounter = 2;
+                    attackTimeCounter = 0;
+                }
+                else if (attackCounter == 2 && animator.GetCurrentAnimatorStateInfo(2).IsName(melee2Animation) && attackTimeCounter > animator.GetCurrentAnimatorClipInfo(2)[0].clip.length * minComboAnimationPercent)
+                {
+                    animator.SetTrigger("Attack 3");
+                    attackCounter = 0;
+                    attackTimeCounter = 0;
+                }
+            }
+            
         }
 
         attackTimeCounter += Time.deltaTime;
