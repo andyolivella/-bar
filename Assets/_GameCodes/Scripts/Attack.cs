@@ -52,7 +52,7 @@ public class Attack : MonoBehaviour
         {
             if (!playerMove.IsGrounded())
             {
-                animator.SetTrigger("Attack 3");
+                animator.SetTrigger("Air Attack");
                 attackCounter = 0;
                 attackTimeCounter = 0;
             }
