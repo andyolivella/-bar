@@ -2,33 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[System.Serializable]
+public class WaveData
+{
+    public string waveName;
+    public List<ObjectPool> pools;
+    public int spawnCuantity;
+    public Transform spawnPoints;
+    public float waveDuration;
+}
+
+
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] EnemyManager enemyManager;
-    [SerializeField] Transform[] spawnPoints;
-    [SerializeField] int[] spawnCuantity;
     private int currentWave = 0;
     private float currentTime = 0;
-    [SerializeField] List<float> waveDuration = new List<float>();
     private int currentWaveSpawnedCuantity = 0;
     private int currentWaveRecycledCuantity = 0;
     [SerializeField] LevelManager level_manager;
     private bool canSpawn = false;
-    [SerializeField] ObjectPool[] enemysPools;
+    [SerializeField] List<WaveData> waveData = new List<WaveData>();
     // Start is called before the first frame update
     public void recycleEnemy(GameObject enemy) 
     {
-        foreach (ObjectPool pool in enemysPools)
+        foreach (ObjectPool pool in waveData[currentWave].pools)
             pool.Release(enemy);
         currentWaveRecycledCuantity++;
     }
 
     void SpawnEnemy() 
     {
-        int ranEnemy = Random.Range(0, enemysPools.Length);
-        GameObject enemy = enemysPools[ranEnemy].Get();
-        int ranSpawnPoint = Random.Range(0, spawnPoints[currentWave].childCount);
-        enemy.transform.parent = spawnPoints[currentWave].GetChild(ranSpawnPoint);
+        int ranEnemy = Random.Range(0, waveData[currentWave].pools.Count);
+        GameObject enemy = waveData[currentWave].pools[ranEnemy].Get();
+        int ranSpawnPoint = Random.Range(0, waveData[currentWave].spawnPoints.childCount);
+        enemy.transform.parent = waveData[currentWave].spawnPoints.GetChild(ranSpawnPoint);
         enemy.transform.localPosition = Vector3.zero;
         enemy.GetComponent<Health>().spawner = this;
         enemy.GetComponent<Health>().enemy_manager = enemyManager;
@@ -54,12 +63,12 @@ public class EnemySpawner : MonoBehaviour
         if (!canSpawn) return;
 
         currentTime += Time.deltaTime;
-        if (currentWave < spawnCuantity.Length)
+        if (currentWave < waveData.Count)
         {
-            if (currentWaveSpawnedCuantity < spawnCuantity[currentWave] && currentTime > (waveDuration[currentWave] * Mathf.InverseLerp(0, spawnCuantity[currentWave], currentWaveSpawnedCuantity)))
+            if (currentWaveSpawnedCuantity < waveData[currentWave].spawnCuantity && currentTime > (waveData[currentWave].waveDuration * Mathf.InverseLerp(0, waveData[currentWave].spawnCuantity, currentWaveSpawnedCuantity)))
                 SpawnEnemy();
 
-            if (currentWaveRecycledCuantity >= spawnCuantity[currentWave] && currentTime > waveDuration[currentWave])
+            if (currentWaveRecycledCuantity >= waveData[currentWave].spawnCuantity && currentTime > waveData[currentWave].waveDuration)
                 {
                    level_manager.SetMoving();
                    currentWave++;

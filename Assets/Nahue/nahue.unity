@@ -3734,17 +3734,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyManager: {fileID: 2105357085}
-  spawnPoints:
-  - {fileID: 108059117}
-  - {fileID: 353518003}
-  spawnCuantity: 0400000005000000
-  waveDuration:
-  - 15
-  - 15
   level_manager: {fileID: 347943756}
-  enemysPools:
-  - {fileID: 1151111070}
-  - {fileID: 1670103624}
+  waveData:
+  - waveName: wave 1
+    pools:
+    - {fileID: 1151111070}
+    - {fileID: 1151111070}
+    spawnCuantity: 4
+    spawnPoints: {fileID: 108059117}
+    waveDuration: 15
+  - waveName: wave 2
+    pools:
+    - {fileID: 1151111070}
+    - {fileID: 1670103624}
+    spawnCuantity: 5
+    spawnPoints: {fileID: 353518003}
+    waveDuration: 15
 --- !u!4 &1644047748
 Transform:
   m_ObjectHideFlags: 0
