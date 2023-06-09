@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int[] spawnCuantity;
     private int currentWave = 0;
     private float currentTime = 0;
-    [SerializeField] float waveDuration = 10;
+    [SerializeField] List<float> waveDuration = new List<float>();
     private int currentWaveSpawnedCuantity = 0;
     private int currentWaveRecycledCuantity = 0;
     [SerializeField] LevelManager level_manager;
@@ -56,10 +56,10 @@ public class EnemySpawner : MonoBehaviour
         currentTime += Time.deltaTime;
         if (currentWave < spawnCuantity.Length)
         {
-            if (currentWaveSpawnedCuantity < spawnCuantity[currentWave] && currentTime > (waveDuration * Mathf.InverseLerp(0, spawnCuantity[currentWave], currentWaveSpawnedCuantity)))
+            if (currentWaveSpawnedCuantity < spawnCuantity[currentWave] && currentTime > (waveDuration[currentWave] * Mathf.InverseLerp(0, spawnCuantity[currentWave], currentWaveSpawnedCuantity)))
                 SpawnEnemy();
 
-            if (currentWaveRecycledCuantity >= spawnCuantity[currentWave] && currentTime > waveDuration)
+            if (currentWaveRecycledCuantity >= spawnCuantity[currentWave] && currentTime > waveDuration[currentWave])
                 {
                    level_manager.SetMoving();
                    currentWave++;
