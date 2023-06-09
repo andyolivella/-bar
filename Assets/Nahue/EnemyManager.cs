@@ -10,7 +10,7 @@ public class EnemyManager : MonoBehaviour
     int currentAttacking = 0;
     private List<GameObject> waitingToRemove = new List<GameObject>();
     private List<float> removeTimer = new List<float>();
-    [SerializeField] float removeDelay = 5;
+    [SerializeField] float removeAttackTurnDelay = 5;
     [SerializeField] float timeBetweenEnemys = 2;
     private bool betweenEnemys = false;
 
@@ -26,7 +26,7 @@ public class EnemyManager : MonoBehaviour
         if (!waitingToRemove.Contains(enemy))
         { 
             waitingToRemove.Add(enemy);
-            removeTimer.Add(removeDelay);
+            removeTimer.Add(removeAttackTurnDelay);
         }
     }
     public bool CanAttack(GameObject enemy)

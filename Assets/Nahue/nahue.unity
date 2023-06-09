@@ -4377,7 +4377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeForEveryEnemy: 5
-  removeDelay: 5
+  removeAttackTurnDelay: 5
   timeBetweenEnemys: 2
 --- !u!4 &2105357086
 Transform:
