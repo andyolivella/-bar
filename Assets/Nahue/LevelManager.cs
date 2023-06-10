@@ -37,6 +37,15 @@ public class LevelManager : MonoBehaviour
         current_state = states.moving;
         ui_manager.ShowGoText();
         spawner.Deactivate();
+
+        if (currentWave+1 >= west_and_east_walls_by_wave.Length)
+        {
+            LevelAndMenuInfo.Instance.menuStartState = MainMenuManager.MenuState.selecting_chapter;
+            int winnedLevel = PlayerPrefs.GetInt("level", 1);
+            if (LevelAndMenuInfo.Instance.CurrentLevel == winnedLevel && winnedLevel + 1 <= LevelAndMenuInfo.Instance.MAX_LEVEL)
+                PlayerPrefs.SetInt("level", winnedLevel + 1);
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     public void SetFighting()
@@ -67,13 +76,6 @@ public class LevelManager : MonoBehaviour
                 currentWave++;
             }
         }
-        if (currentWave >= west_and_east_walls_by_wave.Length)
-        {
-            LevelAndMenuInfo.Instance.menuStartState = MainMenuManager.MenuState.selecting_chapter;
-            int winnedLevel = PlayerPrefs.GetInt("level", 1);
-            if (LevelAndMenuInfo.Instance.CurrentLevel == winnedLevel && winnedLevel + 1 <= LevelAndMenuInfo.Instance.MAX_LEVEL)
-                PlayerPrefs.SetInt("level", winnedLevel + 1);
-            SceneManager.LoadScene("MainMenu");
-        }
+        
     }
 }
