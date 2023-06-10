@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] UIManager ui_manager;
@@ -23,7 +24,13 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         SetFighting();
-        west_and_east_walls_by_wave[currentWave + 1].SetActive(false);
+        currentWave = 0;
+        west_and_east_walls_by_wave[0].SetActive(true);
+        for (int i = 1; i < west_and_east_walls_by_wave.Length; i++)
+        {
+            west_and_east_walls_by_wave[i].SetActive(false);
+        }
+        
     }
 
     public void SetMoving() {
@@ -59,6 +66,14 @@ public class LevelManager : MonoBehaviour
                 west_and_east_walls_by_wave[currentWave + 1].SetActive(true);
                 currentWave++;
             }
+        }
+        if (currentWave >= west_and_east_walls_by_wave.Length)
+        {
+            LevelAndMenuInfo.Instance.menuStartState = MainMenuManager.MenuState.selecting_chapter;
+            int winnedLevel = PlayerPrefs.GetInt("level", 1);
+            if (LevelAndMenuInfo.Instance.CurrentLevel == winnedLevel && winnedLevel + 1 <= LevelAndMenuInfo.Instance.MAX_LEVEL)
+                PlayerPrefs.SetInt("level", winnedLevel + 1);
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }
