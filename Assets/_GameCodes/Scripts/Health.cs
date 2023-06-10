@@ -115,14 +115,13 @@ public class Health : MonoBehaviour
 		}
 		else if (spawner)
 		{ 
-			spawner.recycleEnemy(this.gameObject);
 			currentHealth = defHealth;
 			dead = false;
 			Rigidbody rigid = GetComponent<Rigidbody>();
 			if (rigid)
 				rigid.velocity *= 0;
-
-			enemy_manager.RemoveEnemy(this.gameObject);
+			spawner.recycleEnemy(this.gameObject);
+			enemy_manager.RemoveEnemy(this.gameObject,true);
 		}
 		else
 			Destroy(gameObject);

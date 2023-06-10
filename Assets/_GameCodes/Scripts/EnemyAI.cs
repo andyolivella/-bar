@@ -28,7 +28,7 @@ public class EnemyAI : MonoBehaviour
 	public float timeAfterAllShoots = 5;
 
 	private TriggerParent sightTrigger;
-	private TriggerParent attackTrigger;
+	public TriggerParent attackTrigger;
 	private TriggerParent shootTrigger;
 	private PlayerMove playerMove;
 	private CharacterMotor characterMotor;

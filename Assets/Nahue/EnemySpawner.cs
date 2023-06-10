@@ -42,6 +42,8 @@ public class EnemySpawner : MonoBehaviour
         enemy.GetComponent<Health>().spawner = this;
         enemy.GetComponent<Health>().enemy_manager = enemyManager;
         enemy.GetComponent<EnemyAI>().manager = enemyManager;
+        enemy.GetComponent<EnemyAI>().attackTrigger.hitObjects.Clear();
+        enemyManager.RemoveEnemy(enemy,true);
         currentWaveSpawnedCuantity++;
     }
 

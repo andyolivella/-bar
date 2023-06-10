@@ -21,8 +21,11 @@ public class EnemyManager : MonoBehaviour
         currentAttacking = 0;
     }
 
-    public void RemoveEnemy(GameObject enemy) 
+    public void RemoveEnemy(GameObject enemy, bool removeInstantly = false) 
     {
+        if(removeInstantly)
+            attackingQueue.Remove(enemy);
+
         if (!waitingToRemove.Contains(enemy))
         { 
             waitingToRemove.Add(enemy);

@@ -20,7 +20,7 @@ public class DealDamage : MonoBehaviour
 			victim.GetComponent<Rigidbody>().AddForce (Vector3.up * pushHeight, ForceMode.VelocityChange);
 		}
 		//deal dmg
-		if(health && !health.flashing)
+		if(health && !health.flashing && victim.gameObject.activeInHierarchy)
 			health.currentHealth -= dmg;
 	}
 }
