@@ -61,11 +61,17 @@ public class Attack : MonoBehaviour
         attackTrigger = hitbox.GetComponent<TriggerParent>();
         special = GetComponent<SpecialAttack>();
         playerMove = GetComponent<PlayerMove>();
+        playerMove.attackScript = this;
     }
 
     public void StartNextMoveCounter() {
         attackTimeCounter = 0;
         currentNextModeCounter = 0;
+    }
+
+    public bool IsAttacking()
+    {
+        return !animator.GetCurrentAnimatorStateInfo(2).IsName(idleAnimation);
     }
 
     private string GetNextModeName()

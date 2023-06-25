@@ -47,7 +47,7 @@ public class PlayerMove : MonoBehaviour
 	private DealDamage dealDamage;
 	private Rigidbody rigid;
 	private AudioSource aSource;
-
+	[HideInInspector]public Attack attackScript;
 	//setup
 	void Awake()
 	{
@@ -118,7 +118,8 @@ public class PlayerMove : MonoBehaviour
 		//are we grounded
 		grounded = IsGrounded ();
 		//move, rotate, manage speed
-		characterMotor.MoveTo (moveDirection, curAccel, 0.7f, true);
+		if(!attackScript.IsAttacking())
+			characterMotor.MoveTo (moveDirection, curAccel, 0.7f, true);
 		if (rotateSpeed != 0 && direction.magnitude != 0)
 			characterMotor.RotateToDirection (moveDirection , curRotateSpeed * 5, true);
 		characterMotor.ManageSpeed (curDecel, maxSpeed + movingObjSpeed.magnitude, true);
