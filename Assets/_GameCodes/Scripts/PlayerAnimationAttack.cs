@@ -30,6 +30,11 @@ public class PlayerAnimationAttack : MonoBehaviour
 
     }
 
+    public void StartNextMoveCounter()
+    {
+        melee_attack.StartNextMoveCounter();
+    }
+
     public void StartSpecialAttack1()
     {
         special_attack.StartAttack();

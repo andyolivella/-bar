@@ -252,7 +252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &167255626
 Transform:
   m_ObjectHideFlags: 0
@@ -4733,6 +4733,150 @@ PrefabInstance:
     - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
       propertyPath: minComboTime
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[0].name
+      value: attack1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[1].name
+      value: attack2A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[2].name
+      value: attack2B
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[3].name
+      value: attack3A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[4].name
+      value: attack3B
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[0].animation
+      value: melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[1].animation
+      value: melee 2A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[2].animation
+      value: melee 2B
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[3].animation
+      value: melee 3A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[4].animation
+      value: melee 3B
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[0].animationTrigger
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[1].animationTrigger
+      value: Attack 2A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[2].animationTrigger
+      value: Attack 2B
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[3].animationTrigger
+      value: Attack 3A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[4].animationTrigger
+      value: Attack 3B
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[0].nextModes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[0].nextMoves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[1].nextModes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[2].nextModes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[3].nextModes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[4].nextModes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[0].nextModes.Array.data[0].time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[0].nextModes.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[1].nextModes.Array.data[0].time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[1].nextModes.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[2].nextModes.Array.data[0].time
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[3].nextModes.Array.data[0].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[4].nextModes.Array.data[0].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[0].nextModes.Array.data[0].nextModeName
+      value: attack2A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[0].nextModes.Array.data[1].nextModeName
+      value: attack2B
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[1].nextModes.Array.data[0].nextModeName
+      value: attack3A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[1].nextModes.Array.data[1].nextModeName
+      value: attack3B
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[2].nextModes.Array.data[0].nextModeName
+      value: attack3B
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[3].nextModes.Array.data[0].nextModeName
+      value: attack1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: attackModes.Array.data[4].nextModes.Array.data[0].nextModeName
+      value: attack1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
