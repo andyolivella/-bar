@@ -8,7 +8,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] UIManager ui_manager;
     private enum states {
         moving,
-        fighting
+        fighting,
+        win
     }
 
     private states current_state = states.fighting;
@@ -19,8 +20,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField]EnemySpawner spawner;
     [SerializeField] GameObject[] west_and_east_walls_by_wave;
     [SerializeField] float move_velocity = 1;
-
-    // Start is called before the first frame update
+    [SerializeField] float beforeYouWinTime = 2;
+    private float counter = 0;
+    [SerializeField] GameObject youWinContainer;
+    // Start is cal led before the first frame update
     void Start()
     {
         SetFighting();
@@ -40,12 +43,18 @@ public class LevelManager : MonoBehaviour
 
         if (currentWave+1 >= west_and_east_walls_by_wave.Length)
         {
-            LevelAndMenuInfo.Instance.menuStartState = MainMenuManager.MenuState.selecting_chapter;
             int winnedLevel = PlayerPrefs.GetInt("level", 1);
             if (LevelAndMenuInfo.Instance.CurrentLevel == winnedLevel && winnedLevel + 1 <= LevelAndMenuInfo.Instance.MAX_LEVEL)
                 PlayerPrefs.SetInt("level", winnedLevel + 1);
-            SceneManager.LoadScene("MainMenu");
+            current_state = states.win;
+            counter = 0;
         }
+    }
+
+    public void GoToLevelsMenu()
+    {
+        LevelAndMenuInfo.Instance.menuStartState = MainMenuManager.MenuState.selecting_chapter;
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void SetFighting()
@@ -59,6 +68,15 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (current_state == states.win)
+        {
+            counter += Time.deltaTime;
+            if (counter > beforeYouWinTime && !youWinContainer.activeInHierarchy) 
+            {
+                youWinContainer.SetActive(true);
+            }
+        }
+
         if (current_state == states.moving && currentWave < west_and_east_walls_by_wave.Length-1)
         {
             Vector3 pos = west_and_east_walls_by_wave[currentWave].transform.position;
