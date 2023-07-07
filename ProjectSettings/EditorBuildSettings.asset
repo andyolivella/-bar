@@ -10,10 +10,10 @@ EditorBuildSettings:
     guid: fcd4b111f99c62441af1044912e4e847
   - enabled: 1
     path: Assets/Nahue/Level1.unity
-    guid: 2e2764fb510008d4ca92ed50bdcbb364
+    guid: 2906a733436552b40bfdc61236ec0fff
   - enabled: 1
     path: Assets/Nahue/Level2.unity
-    guid: 8104829fb866a8e41819fb6db420b7ac
+    guid: 0b1e550b1bb100d4690be597dc45d9dd
   - enabled: 1
     path: Assets/Nahue/Level3.unity
     guid: a9e3a9ff37364bd449146051e018a7f4

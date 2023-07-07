@@ -4722,6 +4722,14 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.36
       objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000272, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5728612915920000273, guid: 79f8b599544b5524484a281f8d61800e, type: 3}
       propertyPath: comboTime
       value: 1

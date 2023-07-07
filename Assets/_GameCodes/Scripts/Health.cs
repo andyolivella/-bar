@@ -36,6 +36,9 @@ public class Health : MonoBehaviour
 	public EnemyManager enemy_manager;
 
 	public Transform respawnpos;
+
+	public string fallTrigger = "";
+	public Animator animator;
 	//setup
 	void Awake()
 	{
@@ -48,11 +51,12 @@ public class Health : MonoBehaviour
 		flashRender = flashObject.GetComponent<Renderer>();
 		originalColor = flashRender.material.color;
 		defHealth = currentHealth;
+		animator = GetComponentInChildren<Animator>();
 	}
 	
 	//detecting damage and dying
 	void Update()
-	{		
+	{
 		//flash if we took damage
 		if (currentHealth < h)
 		{
@@ -60,6 +64,10 @@ public class Health : MonoBehaviour
 			stopFlashTime = Time.time + flashDuration;
 			if (hurtSound)
 				AudioSource.PlayClipAtPoint(hurtSound, transform.position);
+			if (!string.IsNullOrEmpty(fallTrigger))
+			{
+				animator.SetTrigger(fallTrigger);
+			}
 		}
 		h = currentHealth;
 		

@@ -378,7 +378,7 @@ MonoBehaviour:
   - Enemy
   - Water
   hitFlashDelay: 0.1
-  flashDuration: 0.2
+  flashDuration: 3
   hitFlashColor: {r: 1, g: 0, b: 0, a: 0}
   flashObject: {fileID: 0}
   spawnOnDeath:
@@ -388,6 +388,8 @@ MonoBehaviour:
   spawner: {fileID: 0}
   enemy_manager: {fileID: 0}
   respawnpos: {fileID: 0}
+  fallTrigger: fall
+  animator: {fileID: 0}
 --- !u!114 &8263755359191343580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,6 +720,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4bcd8f04c09087c4f9fcf6743d654eb9, type: 2}
+    - target: {fileID: 4660609673511541257, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4887404660457943644, guid: fca972b4ecd82401b84973cce30c7c31, type: 3}
       propertyPath: m_Layer
       value: 8
